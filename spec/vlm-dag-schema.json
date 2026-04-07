@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0",
+  "nodes": [
+    {
+      "id": "n1",
+      "label": "概念A",
+      "type": "concept",
+      "props": {}
+    },
+    {
+      "id": "n2",
+      "label": "概念B",
+      "type": "concept",
+      "props": {}
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "n1",
+      "target": "n2",
+      "relation": "causes",
+      "props": {}
+    }
+  ]
+}

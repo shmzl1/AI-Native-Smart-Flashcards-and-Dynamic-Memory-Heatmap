@@ -1,0 +1,17 @@
+# Local env (do not commit)
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.log
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# OS
+.DS_Store
+Thumbs.db
