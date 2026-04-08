@@ -82,21 +82,31 @@
 
 ## 本地快速启动（Local）
 
-### 1）环境要求
+> 这一部分的目的：**让每个组员在自己电脑上，用同一种方式启动 PostgreSQL 数据库**，方便后端/数据库联调。
+> 目前仓库还没放完整前后端代码，所以这里的“快速启动”主要就是：**先把数据库跑起来**。
 
-- Docker + Docker Compose
+### 1）环境要求（必须）
 
-### 2）配置环境变量
+- 已安装并启动 **Docker Desktop**（Windows/macOS）或 Docker 服务（Linux）
+- Docker 版本需支持 `docker compose` 命令（Compose V2）
 
-从示例文件复制一份本地环境变量（按需修改）：
+> 不确定自己有没有装好：在终端输入 `docker -v`，能看到版本号就说明 OK。
+
+### 2）创建本地配置文件（只做一次）
+
+在仓库根目录执行：
 
 ```bash
 cp .env.example .env
 ```
 
-> 注意：`.env` 仅用于本地，不应提交到仓库。
+说明：
 
-### 3）启动数据库
+- `.env.example` 是示例配置（会提交到仓库）
+- `.env` 是你电脑本地配置（**不要提交到仓库**）
+- 如果你电脑上数据库端口 `5432` 被占用，可以在 `.env`（或 `docker-compose.yml`）里把端口改掉
+
+### 3）启动数据库（PostgreSQL）
 
 在仓库根目录执行：
 
@@ -104,13 +114,28 @@ cp .env.example .env
 docker compose up -d
 ```
 
-停止数据库：
+执行成功后：
+
+- PostgreSQL 会在后台运行
+- 后端服务（未来）会使用 `.env` 里的连接信息去连接这个数据库
+
+### 4）确认数据库是否启动成功（推荐）
+
+执行：
+
+```bash
+docker ps
+```
+
+你应该能看到一个 `postgres` 相关的容器状态是 `Up`（运行中）。
+
+### 5）停止数据库（不用时再停）
 
 ```bash
 docker compose down
 ```
 
----
+> 提示：如果你只是临时不用，也可以关机/退出 Docker Desktop；需要继续开发时再 `up -d` 启动即可。
 
 ## 规范 / 契约（Specs / Contracts）
 
